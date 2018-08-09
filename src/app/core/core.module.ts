@@ -1,18 +1,29 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { ServicesComponent } from './services/services.component';
-import { MocksComponent } from './mocks/mocks.component';
-import { InterceptorsComponent } from './interceptors/interceptors.component';
-import { GuardsComponent } from './guards/guards.component';
-import { HttpComponent } from './http/http.component';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
   ],
-  declarations: [AuthenticationComponent, FooterComponent, HeaderComponent, ServicesComponent, MocksComponent, InterceptorsComponent, GuardsComponent, HttpComponent]
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+  ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'CoreModule is already loaded. Import it in the AppModule only');
+    }
+  }
+}
