@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenerateIdService } from '../../../core/services/generate-id.service';
 
 @Component({
   selector: 'app-trend-audio',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendAudioComponent implements OnInit {
 
-  constructor() { }
+  prefix: string;
+  uniqueId: string;
 
-  ngOnInit() {
+  constructor(private generateIdService: GenerateIdService) {
+    this.prefix = 'audio';
   }
 
+  ngOnInit() {
+    this.uniqueId = this.generateIdService.generateUniqueId(this.prefix);
+  }
+
+  genId(num: number) {
+    return this.generateIdService.generateId(this.uniqueId, `${num}`);
+  }
 }

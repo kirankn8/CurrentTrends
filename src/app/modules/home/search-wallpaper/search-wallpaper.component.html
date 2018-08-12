@@ -1,3 +1,9 @@
-<p>
-  search-wallpaper works!
-</p>
+<mat-card [id]="genId(0)">
+  <h1 [id]="genId(1)">Current Trends</h1>
+  <mat-form-field [id]="genId(2)" class="searchTrendsForm" appearance="outline">
+    <input [id]="genId(3)" matInput class="searchTrends" size="40" [formControl]="searchTrends" (keyup.enter)="onEnter()">
+    <mat-hint [id]="genId(4)" align="end">
+      <i [id]="genId(5)">Press Enter to Search Trends</i>
+    </mat-hint>
+  </mat-form-field>
+</mat-card>

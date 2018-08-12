@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GenerateIdService } from '../../../core/services/generate-id.service';
 
 @Component({
   selector: 'app-trend-photo',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendPhotoComponent implements OnInit {
 
-  constructor() { }
+  @Input() imageSrc: string;
+  prefix: string;
+  uniqueId: string;
 
-  ngOnInit() {
+  constructor(private generateIdService: GenerateIdService) {
+    this.prefix = 'photo';
   }
 
+  ngOnInit() {
+    this.uniqueId = this.generateIdService.generateUniqueId(this.prefix);
+  }
+
+  genId(num: number) {
+    return this.generateIdService.generateId(this.uniqueId, `${num}`);
+  }
 }

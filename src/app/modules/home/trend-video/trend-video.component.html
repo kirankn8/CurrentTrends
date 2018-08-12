@@ -1,3 +1,4 @@
-<p>
-  trend-video works!
-</p>
+<mat-card [id]="genId(0)" class="less-padding add-margin">
+  <iframe [id]="genId(1)" class="embeded-video" [src]="videoSrc | safe" frameborder="0" allow="autoplay; encrypted-media" webkitallowfullscreen
+    mozallowfullscreen allowfullscreen></iframe>
+</mat-card>
